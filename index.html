@@ -17,11 +17,11 @@
 
 			overflow-x: hidden;
 		}
-		#Item
+		#waterfall
 		{
-			margin: 100px;
+			margin: 10px;
 		}
-		#Item li
+		#waterfall li
 		{
 			/*position: absolute;*/
 			left: 0;
@@ -30,27 +30,27 @@
 			opacity: 0;
 			transform: translateY(100px);
 		}
-		#Item li.show
+		#waterfall li.show
 		{
 			opacity: 1;
 			transform: translateY(0);
 			
-			transition: left 0.3s, top 1s;
+			transition: all 0.3s, top 1s;
 		}
-		#Item li > div
+		#waterfall li > div
 		{
 			color: rgba(0,0,0,0.6);
 			font-size: 32px;
 
 			border-radius: 3px;
-			margin: 15px;
+			margin: 10px;
 			padding: 15px;
 			background: rgb(255,255,255);
 
 			border: 1px solid rgba(038, 191, 64, 0);
 			transition: all 0.5s;
 		}
-		#Item li > div:hover
+		#waterfall li > div:hover
 		{
 			transform: translateY(-10px);
 			border: 1px solid rgba(038, 191, 64, 1);
@@ -61,26 +61,36 @@
 </head>
 <body>
 	<div id="Center">
-		<ul id="Item">
-			<script type="text/javascript">
-				function random(min,max)
-				{
-					return min + Math.floor(Math.random() * (max - min + 1))
-				}
-				for (var i = 0; i < 1000; i++)
-				{
-					var background = random(100,245) + "," + random(100,245) + "," + random(100,245);
-					document.write("<li><div style='height:" + random(50,500) +  "px'>" + (i + 1) + "</div></li>");
-				}
-			</script>
-		</ul>
+		<ul id="waterfall"></ul>
 	</div>
 	<script type="text/javascript" src="res\jquery3.1.1.min.js"></script>
 	<script type="text/javascript" src="newWaterfall.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#Item').NewWaterfall();
+		$(document).ready(function()
+		{
+			$('#waterfall').NewWaterfall();
 		});
+
+		// 自动加载更多
+		function random(min,max)
+		{
+			return min + Math.floor(Math.random() * (max - min + 1))
+		}
+		var loading  = false;
+		var dist = 300;
+		var num = 1;
+
+		setInterval(function(){
+			if($(window).scrollTop() >= $(document).height() - $(window).height() - dist && !loading)
+			{
+				loading = true;
+
+				$("#waterfall").append("<li><div style='height:" + random(50,500) +  "px'>" + num + "</div></li>");
+				num++;
+
+				loading = false;
+			}
+		},60);
 	</script>
 </body>
 </html>
