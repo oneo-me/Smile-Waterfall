@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>瀑布流</title>
+	<meta charset="utf-8" name="viewport" content="initial-scale=1,maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="res/reset2.0.min.css">
+	<style type="text/css">
+		body
+		{
+			background: rgb(245,245,245);
+			font-size: 1em;
+			letter-spacing: 0.1em;
+			line-height: 1.6em;
+			font-family: 'Microsoft Yahei';
+			font-weight: lighter;
+			color: rgba(0,0,0,0.6);
+
+			overflow-x: hidden;
+		}
+		#Item
+		{
+			margin: 100px;
+		}
+		#Item li
+		{
+			/*position: absolute;*/
+			left: 0;
+			top: 0;
+
+			opacity: 0;
+			transform: translateY(100px);
+		}
+		#Item li.show
+		{
+			opacity: 1;
+			transform: translateY(0);
+			
+			transition: left 0.3s, top 1s;
+		}
+		#Item li > div
+		{
+			color: rgba(0,0,0,0.6);
+			font-size: 32px;
+
+			border-radius: 3px;
+			margin: 15px;
+			padding: 15px;
+			background: rgb(255,255,255);
+
+			border: 1px solid rgba(038, 191, 64, 0);
+			transition: all 0.5s;
+		}
+		#Item li > div:hover
+		{
+			transform: translateY(-10px);
+			border: 1px solid rgba(038, 191, 64, 1);
+			box-shadow: 0 10px 15px rgba(038, 191, 64, 0.1);
+			transition: all 0.3s;
+		}
+	</style>
+</head>
+<body>
+	<div id="Center">
+		<ul id="Item">
+			<script type="text/javascript">
+				function random(min,max)
+				{
+					return min + Math.floor(Math.random() * (max - min + 1))
+				}
+				for (var i = 0; i < 1000; i++)
+				{
+					var background = random(100,245) + "," + random(100,245) + "," + random(100,245);
+					document.write("<li><div style='height:" + random(50,500) +  "px'>" + (i + 1) + "</div></li>");
+				}
+			</script>
+		</ul>
+	</div>
+	<script type="text/javascript" src="res\jquery3.1.1.min.js"></script>
+	<script type="text/javascript" src="waterfall.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#Item').NewWaterfall();
+		});
+	</script>
+</body>
+</html>
