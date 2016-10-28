@@ -20,21 +20,25 @@
 		#waterfall
 		{
 			margin: 10px;
+			overflow: hidden;
 		}
 		#waterfall li
 		{
 			/*position: absolute;*/
 			left: 0;
 			top: 0;
-
 			opacity: 0;
+			z-index: 0;
 			transform: translateY(100px);
+		}
+		#waterfall li:hover
+		{
+			z-index: 1;
 		}
 		#waterfall li.show
 		{
 			opacity: 1;
 			transform: translateY(0);
-			
 			transition: all 0.3s, top 1s;
 		}
 		#waterfall li > div
@@ -52,9 +56,9 @@
 		}
 		#waterfall li > div:hover
 		{
-			transform: translateY(-10px);
+			transform: translateY(-10px) ;
 			border: 1px solid rgba(038, 191, 64, 1);
-			box-shadow: 0 10px 15px rgba(038, 191, 64, 0.1);
+			box-shadow: 0 30px 80px rgba(038, 191, 64, 0.3);
 			transition: all 0.3s;
 		}
 	</style>
@@ -68,7 +72,10 @@
 	<script type="text/javascript">
 		$(document).ready(function()
 		{
-			$('#waterfall').NewWaterfall();
+			$('#waterfall').NewWaterfall({
+				width: 100,
+				delay: 100,
+			});
 		});
 
 		// 自动加载更多
@@ -77,20 +84,23 @@
 			return min + Math.floor(Math.random() * (max - min + 1))
 		}
 		var loading  = false;
-		var dist = 300;
+		var dist = 500;
 		var num = 1;
 
 		setInterval(function(){
 			if($(window).scrollTop() >= $(document).height() - $(window).height() - dist && !loading)
 			{
+				// 表示开始加载
 				loading = true;
 
-				$("#waterfall").append("<li><div style='height:" + random(50,500) +  "px'>" + num + "</div></li>");
+				// 加载内容
+				$("#waterfall").append("<li><div style='height:" + random(50,100) +  "px'>" + num + "</div></li>");
 				num++;
 
+				// 表示加载结束
 				loading = false;
 			}
-		},60);
+		},1);
 	</script>
 </body>
 </html>
