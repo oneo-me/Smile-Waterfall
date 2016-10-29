@@ -22,6 +22,10 @@
 			margin: 10px;
 			overflow: hidden;
 		}
+		#waterfall.min
+		{
+			margin: 0;
+		}
 		#waterfall li
 		{
 			/*position: absolute;*/
@@ -56,10 +60,29 @@
 		}
 		#waterfall li > div:hover
 		{
-			transform: translateY(-10px) ;
+			transform: translateY(-10px);
 			border: 1px solid rgba(038, 191, 64, 1);
 			box-shadow: 0 30px 80px rgba(038, 191, 64, 0.3);
 			transition: all 0.3s;
+		}
+		#waterfall li.min > div
+		{
+			margin: 0;
+			transform: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		}
+		#waterfall li.min > div:hover
+		{
+			transform: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		}
 	</style>
 </head>
@@ -73,7 +96,7 @@
 		$(document).ready(function()
 		{
 			$('#waterfall').NewWaterfall({
-				width: 100,
+				width: 360,
 				delay: 100,
 			});
 		});
@@ -94,13 +117,13 @@
 				loading = true;
 
 				// 加载内容
-				$("#waterfall").append("<li><div style='height:" + random(50,100) +  "px'>" + num + "</div></li>");
+				$("#waterfall").append("<li><div style='height:" + random(50,300) +  "px'>" + num + "</div></li>");
 				num++;
 
 				// 表示加载结束
 				loading = false;
 			}
-		},1);
+		},60);
 	</script>
 </body>
 </html>
