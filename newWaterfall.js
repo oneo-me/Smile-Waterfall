@@ -59,7 +59,6 @@
 
 			if (ul_column > 0)
 			{
-				$(lis).removeClass('min');
 				$(ul).removeClass('min');
 				
 				// 基础样式设置
@@ -142,7 +141,6 @@
 			{
 				lis.attr("style","");
 				ul.attr("style","");
-				$(lis).addClass('min');
 				$(ul).addClass('min');
 			}
 
