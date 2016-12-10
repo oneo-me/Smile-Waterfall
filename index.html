@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>瀑布流</title>
 	<meta charset="utf-8" name="viewport" content="initial-scale=1,maximum-scale=1">
 	<link rel="stylesheet" type="text/css" href="res/reset2.0.min.css">
 	<style type="text/css">
-		body
-		{
-			background: rgb(245,245,245);
+		body {
+			background: rgb(245, 245, 245);
 			font-size: 1em;
 			letter-spacing: 0.1em;
 			line-height: 1.6em;
 			font-family: 'Microsoft Yahei';
 			font-weight: lighter;
-			color: rgba(0,0,0,0.6);
-
+			color: rgba(0, 0, 0, 0.6);
 			overflow-x: hidden;
 		}
-		#waterfall
-		{
+		
+		#waterfall {
 			margin: 10px;
 			overflow: hidden;
 		}
-		#waterfall.min
-		{
+		
+		#waterfall.min {
 			margin: 0;
 		}
-		#waterfall li
-		{
+		
+		#waterfall li {
 			/*position: absolute;*/
 			left: 0;
 			top: 0;
@@ -35,57 +34,54 @@
 			z-index: 0;
 			transform: translateY(100px);
 		}
-		#waterfall li:hover
-		{
+		
+		#waterfall li:hover {
 			z-index: 1;
 		}
-		#waterfall li.show
-		{
+		
+		#waterfall li.show {
 			opacity: 1;
 			transform: translateY(0);
 			transition: all 0.3s, top 1s;
 		}
-		#waterfall li > div
-		{
-			color: rgba(0,0,0,0.6);
+		
+		#waterfall li > div {
+			color: rgba(0, 0, 0, 0.6);
 			font-size: 32px;
-
 			border-radius: 3px;
 			margin: 10px;
 			padding: 15px;
-			background: rgb(255,255,255);
-
+			background: rgb(255, 255, 255);
 			border: 1px solid rgba(038, 191, 64, 0);
 			transition: all 0.5s;
 		}
-		#waterfall li > div:hover
-		{
+		
+		#waterfall li > div:hover {
 			transform: translateY(-10px);
 			border: 1px solid rgba(038, 191, 64, 1);
 			box-shadow: 0 30px 80px rgba(038, 191, 64, 0.3);
 			transition: all 0.3s;
 		}
-		#waterfall li.min > div
-		{
+		
+		#waterfall li.min > div {
 			margin: 0;
 			transform: none;
 			border: none;
 			border-radius: 0;
 			box-shadow: none;
-
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		}
-		#waterfall li.min > div:hover
-		{
+		
+		#waterfall li.min > div:hover {
 			transform: none;
 			border: none;
 			border-radius: 0;
 			box-shadow: none;
-
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		}
 	</style>
 </head>
+
 <body>
 	<div id="Center">
 		<ul id="waterfall"></ul>
@@ -126,4 +122,5 @@
 		},60);
 	</script>
 </body>
+
 </html>
