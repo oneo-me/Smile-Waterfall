@@ -10,25 +10,25 @@
 
 ```
 <ul id="waterfall">
-	<li>
-		<div>
-			内容1
-		</div>
-	</li>
-	<li>
-		<div>
-			内容2
-		</div>
-	</li>
+    <li>
+        <div>
+            内容1
+        </div>
+    </li>
+    <li>
+        <div>
+            内容2
+        </div>
+    </li>
 </ul>
 
 // 执行瀑布流代码
 $(document).ready(function ()
 {
-	$('#waterfall').NewWaterfall({
-		width: 360,
-		delay: 100,
-	});
+    $('#waterfall').NewWaterfall({
+        width: 360,
+        delay: 100,
+    });
 });
 ```
 
