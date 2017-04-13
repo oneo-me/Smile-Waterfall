@@ -6,6 +6,8 @@
 
 [下载地址](https://github.com/1217950746/New-Waterfall/archive/master.zip)
 
+[预览](https://1217950746.github.io/New-Waterfall/)
+
 ## 食用方法
 
 ```
