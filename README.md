@@ -1,4 +1,4 @@
-# New-Waterfall
+# Smile Waterfall
 
 一个基于Jquery开发的瀑布流插件
 

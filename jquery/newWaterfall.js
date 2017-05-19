@@ -1,10 +1,8 @@
 /*	   Waterfall Flow Code By: ONEO 2015.08.26
 	NewWaterfall Flow Code By: ONEO 2016.10.25
 ------------------------------------------------------*/
-(function ()
-{
-    $.fn.NewWaterfall = function (options)
-    {
+(function () {
+    $.fn.NewWaterfall = function (options) {
         // 参数
         var defaults = {
             width: 360,
@@ -14,23 +12,17 @@
         var config = $.extend({}, defaults, options);
         var ul = this;
         // 功能
-        var show = function (li)
-        {
-            if ($(window).scrollTop() + $(window).height() > $(li).offset().top)
-            {
+        var show = function (li) {
+            if ($(window).scrollTop() + $(window).height() > $(li).offset().top) {
                 $(li).addClass('show');
-            } else if ($(window).scrollTop() + $(window).height() < $(li).offset().top)
-            {
-                if (config.repeatShow)
-                {
+            } else if ($(window).scrollTop() + $(window).height() < $(li).offset().top) {
+                if (config.repeatShow) {
                     $(li).removeClass('show');
                 }
             }
         }
-        var refresh = function ()
-        {
-            if (ul.length <= 0)
-            {
+        var refresh = function () {
+            if (ul.length <= 0) {
                 return;
             }
 
@@ -41,23 +33,20 @@
             // 参数
             var lis = $(ul).children("li");
 
-            if (lis.length <= 0)
-            {
+            if (lis.length <= 0) {
                 return;
             }
 
             var ul_width = $(ul).width();
             var ul_column = parseInt(ul_width / config.width);
 
-            if (lis.length < ul_column)
-            {
+            if (lis.length < ul_column) {
                 ul_column = lis.length;
             }
 
             var li_left = (ul_width - ul_column * config.width) / 2;
 
-            if (ul_column > 0)
-            {
+            if (ul_column > 0) {
                 $(ul).removeClass('min');
 
                 // 基础样式设置
@@ -72,8 +61,7 @@
                 var nlist = []
 
                 // 初始化列表
-                for (var i = 0; i < lis.length; i++)
-                {
+                for (var i = 0; i < lis.length; i++) {
                     list.push({
                         "index": i,
                         "bottom": 0,
@@ -82,27 +70,21 @@
                 }
 
                 // 初始化列
-                for (var i = 0; i < ul_column; i++)
-                {
+                for (var i = 0; i < ul_column; i++) {
                     nlist.push([]);
                 }
 
                 // 智能排序
-                for (var i = 0; i < lis.length; i++)
-                {
-                    if (i < ul_column)
-                    {
+                for (var i = 0; i < lis.length; i++) {
+                    if (i < ul_column) {
                         list[i]["bottom"] = list[i]["height"];
                         nlist[i].push(list[i]);
-                    } else
-                    {
+                    } else {
                         var b = 0;
                         var l = 0;
-                        for (var j = 0; j < ul_column; j++)
-                        {
+                        for (var j = 0; j < ul_column; j++) {
                             var jh = nlist[j][nlist[j].length - 1]["bottom"] + list[i]["height"];
-                            if (b == 0 || jh < b)
-                            {
+                            if (b == 0 || jh < b) {
                                 b = jh;
                                 l = j;
                             }
@@ -113,10 +95,8 @@
                 }
 
                 // 开始布局
-                for (var i = 0; i < nlist.length; i++)
-                {
-                    for (var j = 0; j < nlist[i].length; j++)
-                    {
+                for (var i = 0; i < nlist.length; i++) {
+                    for (var j = 0; j < nlist[i].length; j++) {
                         $(lis[nlist[i][j]["index"]]).css({
                             "left": i * config.width + li_left,
                             "top": nlist[i][j]["bottom"] - nlist[i][j]["height"]
@@ -125,25 +105,21 @@
                 }
 
                 // 设置最大高度
-                for (var i = 0; i < nlist.length; i++)
-                {
+                for (var i = 0; i < nlist.length; i++) {
                     var h = nlist[i][nlist[i].length - 1]["bottom"];
-                    if (maxHeight < h)
-                    {
+                    if (maxHeight < h) {
                         maxHeight = h;
                     }
                 }
                 $(ul).css("height", maxHeight);
-            } else
-            {
+            } else {
                 lis.attr("style", "");
                 ul.attr("style", "");
                 $(ul).addClass('min');
             }
 
             // 显示列表
-            for (var i = 0; i < lis.length; i++)
-            {
+            for (var i = 0; i < lis.length; i++) {
                 show(lis[i]);
             }
         }

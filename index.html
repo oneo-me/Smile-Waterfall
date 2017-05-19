@@ -1,128 +1,137 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>瀑布流</title>
-    <meta charset="utf-8" name="viewport" content="initial-scale=1,maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="res/reset2.0.min.css">
-    <style type="text/css">
-        body {
-            background: rgb(245, 245, 245);
-            font-size: 1em;
-            letter-spacing: 0.1em;
-            line-height: 1.6em;
-            font-family: 'Microsoft Yahei';
-            font-weight: lighter;
-            color: rgba(0, 0, 0, 0.6);
-            overflow-x: hidden;
-        }
-        
-        #waterfall {
-            margin: 10px;
-            overflow: hidden;
-        }
-        
-        #waterfall.min {
-            margin: 0;
-        }
-        
-        #waterfall li {
-            /*position: absolute;*/
-            left: 0;
-            top: 0;
-            opacity: 0;
-            z-index: 0;
-            transform: translateY(100px);
-        }
-        
-        #waterfall li:hover {
-            z-index: 1;
-        }
-        
-        #waterfall li.show {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.3s, top 1s;
-        }
-        
-        #waterfall li>div {
-            color: rgba(0, 0, 0, 0.6);
-            font-size: 32px;
-            border-radius: 3px;
-            margin: 10px;
-            padding: 15px;
-            background: rgb(255, 255, 255);
-            border: 1px solid rgba(038, 191, 64, 0);
-            transition: all 0.5s;
-        }
-        
-        #waterfall li>div:hover {
-            transform: translateY(-10px);
-            border: 1px solid rgba(038, 191, 64, 1);
-            box-shadow: 0 30px 80px rgba(038, 191, 64, 0.3);
-            transition: all 0.3s;
-        }
-        
-        #waterfall li.min>div {
-            margin: 0;
-            transform: none;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        #waterfall li.min>div:hover {
-            transform: none;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-
-<body>
-    <div id="Center">
-        <ul id="waterfall"></ul>
-    </div>
-    <script type="text/javascript" src="res\jquery3.1.1.min.js"></script>
-    <script type="text/javascript" src="newWaterfall.js"></script>
-    <script type="text/javascript">
-        // 文档加载完毕后执行
-        $(document).ready(function ()
-        {
-            $('#waterfall').NewWaterfall({
-                width: 360,
-                delay: 100,
-            });
-        });
-
-        // 自动加载更多
-        function random(min, max)
-        {
-            return min + Math.floor(Math.random() * (max - min + 1))
-        }
-        var loading = false;
-        var dist = 500;
-        var num = 1;
-
-        setInterval(function ()
-        {
-            if ($(window).scrollTop() >= $(document).height() - $(window).height() - dist && !loading)
-            {
-                // 表示开始加载
-                loading = true;
-
-                // 加载内容
-                $("#waterfall").append("<li><div style='height:" + random(50, 300) + "px'>" + num + "</div></li>");
-                num++;
-
-                // 表示加载结束
-                loading = false;
+    <head>
+        <title>瀑布流</title>
+        <meta charset="utf-8" name="viewport" content="initial-scale=1,maximum-scale=1">
+        <style type="text/css">
+            html,
+            ul,
+            li,
+            div,
+            body {
+                margin: 0;
+                padding: 0;
             }
-        }, 60);
-    </script>
-</body>
+
+            ul {
+                list-style: none;
+            }
+            /* 瀑布流基础样式 必须有*/
+
+            #waterfall {
+                margin: 10px;
+                overflow: hidden;
+            }
+
+            #waterfall li {
+                left: 0;
+                top: 0;
+                position: absolute;
+                opacity: 0;
+            }
+
+            #waterfall li.show {
+                opacity: 1;
+            }
+
+            #waterfall li div {
+                margin: 10px;
+            }
+            /* 瀑布流美化样式 根据合适的写*/
+
+            body {
+                color: rgba(0, 0, 0, 0.6);
+                background: rgb(245, 245, 245);
+                font-size: 1em;
+                letter-spacing: 0.1em;
+                line-height: 1.6em;
+                font-family: 'Microsoft Yahei';
+                font-weight: lighter;
+            }
+
+            #waterfall li {
+                z-index: 0;
+                transform: translateY(100px);
+            }
+
+            #waterfall li:hover {
+                z-index: 1;
+            }
+
+            #waterfall li.show {
+                transform: translateY(0);
+                transition: all 0.3s, top 1s;
+            }
+
+            #waterfall li div {
+                font-size: 2em;
+                border-radius: 3px;
+                background: rgb(255, 255, 255);
+                padding: 15px;
+                border: 1px solid rgba(038, 191, 64, 0);
+                transform: translateY(0);
+                transition: all 0.5s;
+            }
+
+            #waterfall li div:hover {
+                transform: translateY(-10px);
+                border: 1px solid rgba(038, 191, 64, 1);
+                box-shadow: 0 30px 80px rgba(038, 191, 64, 0.3);
+                transition: all 0.3s;
+            }
+            /*小于一列的效果*/
+
+            #waterfall.min {
+                margin: 0
+            }
+
+            #waterfall.min li div {
+                margin: 0;
+                border-radius: 0;
+                border: 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            #waterfall.min li div:hover {
+                transform: translateY(0);
+                box-shadow: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="Center">
+            <ul id="waterfall"></ul>
+        </div>
+        <script type="text/javascript" src="smile-Waterfall.js"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                var loading = false
+                var num = 0
+                smileWaterfall({
+                    id: "waterfall",
+                    width: 320,
+                    delay: 60
+                }, function () {
+                    if (!loading && document.body.scrollTop + window.innerHeight > document.body.scrollHeight - window.innerHeight / 2) {
+                        loading = true
+                        for (var i = num; i < num + 10; i++) {
+                            var li = document.createElement("li")
+                            var div = document.createElement("div")
+                            div.style.height = 50 + Math.floor(Math.random() * (300 - 50 + 1)) + "px"
+                            div.innerHTML = i
+                            li.appendChild(div)
+                            document.getElementById("waterfall").appendChild(li)
+                        }
+                        num += 10
+                        loading = false
+                    }
+                }, function () {
+
+                })
+            }
+        </script>
+    </body>
 
 </html>
