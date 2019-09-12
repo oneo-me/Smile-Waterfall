@@ -75,7 +75,7 @@ function smileWaterfall(options, start, end) {
                     waterfall.className = "min"
                 }
                 childNodes.forEach(function (li) {
-                    if (document.body.scrollTop + window.innerHeight > li.offsetTop) {
+                    if (document.scrollingElement.scrollTop + window.innerHeight > li.offsetTop) {
                         li.className = "show"
                     }
                 })

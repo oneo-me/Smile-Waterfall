@@ -114,7 +114,7 @@
                     width: 320,
                     delay: 60
                 }, function () {
-                    if (!loading && document.body.scrollTop + window.innerHeight > document.body.scrollHeight - window.innerHeight / 2) {
+                    if (!loading && document.scrollingElement.scrollTop + window.innerHeight > document.body.scrollHeight - window.innerHeight / 2) {
                         loading = true
                         for (var i = num; i < num + 10; i++) {
                             var li = document.createElement("li")
